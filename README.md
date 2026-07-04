@@ -98,10 +98,3 @@ recommended_action: <SIU escalation note OR auto-clear note>
 | C-1001 | LOW | Routine claim, low amount, consistent details |
 | C-1002 | HIGH | Large amount, new policy, inconsistent damage description, prior claims |
 | C-1003 | LOW | Small, straightforward claim |
-
-## Known Limitations / Next Steps
-
-- Currently a single-claim-at-a-time flow; batch processing across all CSV rows would need a loop/batch component.
-- No persistent audit log of past decisions — recommend adding a database write step (e.g., Postgres) after the If-Else for compliance record-keeping.
-- High-risk claims currently just route to Chat Output; in production this should notify/create a ticket for the SIU team (e.g., Slack, email, or a ticketing system webhook) rather than sit in the Playground.
-- No explicit human-approval gate before any downstream action is taken — by design in this MVP, the flow only *recommends*, and a human must act on the SIU Escalation output manually.
